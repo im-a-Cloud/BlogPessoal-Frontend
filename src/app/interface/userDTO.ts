@@ -1,7 +1,7 @@
-export interface Usuario{
-    id:number;
-    nome: string;
-    email:string;
-    senha:string;
-    tipoUsuario: string;
-  }
+export interface Usuario {
+  idUsuario: number;
+  nomeUsuario: string;
+  emailUsuario: string;
+  senhaUsuario: string;
+  tipoUsuario: 'PADRAO' | 'ADMIN'; // Enumeração de possíveis valores
+}

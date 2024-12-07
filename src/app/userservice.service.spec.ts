@@ -1,19 +1,23 @@
-import { TestBed } from '@angular/core/testing';
-import { UserService } from './userservice.service'; // Importa o serviço correto
-import { HttpClientTestingModule } from '@angular/common/http/testing'; // Módulo para testar HttpClient
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Usuario } from './interface/userDTO';
+import { environment } from './environment/environment';
 
-describe('UserService', () => {
-  let service: UserService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule], // Importa módulo de teste para HttpClient
-      providers: [UserService], // Declara o serviço em teste
-    });
-    service = TestBed.inject(UserService); // Injeta o serviço
-  });
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {
 
-  it('should be created', () => {
-    expect(service).toBeTruthy(); // Testa se o serviço foi criado com sucesso
-  });
-});
+  private apiUrl = environment.apiUrl
+  
+  constructor(private http: HttpClient) {}
+
+  getUsers(): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(this.apiUrl); 
+  }
+  criarUsuario(novoUsuario: any):Observable<any>{
+    return this.http.post(this.apiUrl, novoUsuario);
+  }
+}

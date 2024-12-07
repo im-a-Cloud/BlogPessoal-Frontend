@@ -1,7 +1,8 @@
 <p>lista-usuarios-componente works!</p>
 <div *ngIf="listaUsuarios().length >0">
-    <div *ngFor="let user of listaUsuarios()">
-        {{user}}
-        </div>
+    <ul>
+        <li *ngFor="let usuario of listaUsuarios()">
+            <p>Nome: {{ usuario?.nomeUsuario || 'Nome não disponível' }}</p>
+        </li>
+    </ul>
 </div>
-

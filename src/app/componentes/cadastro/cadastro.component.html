@@ -1,17 +1,45 @@
 <p>Página de cadastro</p>
-<form>
-    <label for="nome-Usuario">Nome de usuário</label><br>
-    <input type="text" id="nome-Usuario" name="nome-Usuario"><br>
-    <label for="email">Entre com seu email:</label><br>
-    <input type="email" id="email" name="email"><br>
-    <label for="email">Confirme seu email:</label><br>
-    <input type="email" id="email" name="email"><br>
-    <label for="senha">Senha</label><br>
-    <input type="text" id="senha" name="senha"><br>
-    <label for="confirmar-senha">Confirme sua senha:</label><br>
-    <input type="text" id="confirmar-senha" name="confirmar-senha"><br>
-    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
-    <label for="vehicle3">Eu aceito os termos e condições(sua alma será nossa)</label><br>
+<form [formGroup]="formularioCadastro" (ngSubmit)="enviarFormulario()">
+  <div>
+    <label for="nomeUsuario">Nome de usuário</label><br>
+    <input type="text" id="nomeUsuario" formControlName="nomeUsuario" required><br>
+    <!-- Mensagem de erro -->
+    <div *ngIf="formularioCadastro.get('nomeUsuario')?.touched && formularioCadastro.get('nomeUsuario')?.hasError('required')" class="error">
+      O nome de usuário é obrigatório.
+    </div>
+  </div>
+  
+  <div>
+    <label for="emailUsuario">Entre com seu email:</label><br>
+    <input type="email" id="emailUsuario" formControlName="emailUsuario" required><br>
+    <div *ngIf="formularioCadastro.get('emailUsuario')?.touched && formularioCadastro.get('emailUsuario')?.hasError('required')" class="error">
+      O email é obrigatório.
+    </div>
+  </div>
+  
+  <div>
+    <label for="senhaUsuario">Senha</label><br>
+    <input type="password" id="senhaUsuario" formControlName="senhaUsuario" required><br>
+    <div *ngIf="formularioCadastro.get('senhaUsuario')?.touched && formularioCadastro.get('senhaUsuario')?.hasError('required')" class="error">
+      A senha é obrigatória.
+    </div>
+  </div>
+  
+  <div>
+    <label for="tipoUsuario">Tipo:</label>
+    <select id="tipoUsuario" formControlName="tipoUsuario" required>
+      <option value="">Selecione o tipo</option>
+      <option value="ADMIN">Admin</option>
+      <option value="PADRAO">Padrão</option>
+    </select>
+    <div *ngIf="formularioCadastro.get('tipoUsuario')?.touched && formularioCadastro.get('tipoUsuario')?.hasError('required')" class="error">
+      O tipo de usuário é obrigatório.
+    </div>
+  </div>
+  
+  <div>
+    <input type="checkbox" id="termosCondicoes" formControlName="termosCondicoes">
+    <label for="termosCondicoes">Eu aceito os termos e condições (sua alma será nossa)</label><br>
+  </div>
     <input type="submit" value="Finalizar cadastro">
-
 </form>

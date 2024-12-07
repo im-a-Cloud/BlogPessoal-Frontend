@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { CadastroComponent } from './componentes/cadastro/cadastro.component';
-import { ListaUsuariosComponenteComponent } from "./componentes/lista-usuarios-componente/lista-usuarios-componente.component";
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,7 +7,8 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [
     CommonModule,
-    CadastroComponent, ListaUsuariosComponenteComponent],
+    RouterModule
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
