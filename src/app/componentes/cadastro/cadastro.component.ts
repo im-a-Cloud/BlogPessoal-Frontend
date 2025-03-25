@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormBuilder, FormsModule, ReactiveFormsModule,Validators } from '@angular/forms';
 import { UserService } from '../../Userservice.service';
 import { CommonModule } from '@angular/common';
 
@@ -23,6 +23,7 @@ export class CadastroComponent {
       emailUsuario: [''],
       senhaUsuario: [''],
       tipoUsuario: [''],
+      termosCondicoes: [false, Validators.requiredTrue] // Adicionando o campo de checkbox
     });
   }
 

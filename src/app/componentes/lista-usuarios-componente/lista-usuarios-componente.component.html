@@ -1,8 +1,16 @@
-<p>lista-usuarios-componente works!</p>
-<div *ngIf="listaUsuarios().length >0">
+<p>Debug: {{ listaUsuarios() | json }}</p>
+<p>Número de usuários: {{ listaUsuarios().length }}</p>
+
+<div *ngIf="listaUsuarios().length > 0; else noUsers">
     <ul>
-        <li *ngFor="let usuario of listaUsuarios()">
+        <li *ngFor="let usuario of listaUsuarios(); let i = index">
+            <p>Índice: {{i}}</p>
+            <p>Usuário objeto: {{ usuario | json }}</p>
             <p>Nome: {{ usuario?.nomeUsuario || 'Nome não disponível' }}</p>
         </li>
     </ul>
 </div>
+
+<ng-template #noUsers>
+    <p>Nenhum usuário encontrado ou lista ainda não carregada.</p>
+</ng-template>
