@@ -1,0 +1,47 @@
+<form [formGroup]="formularioPostagem" (ngSubmit)="enviarPostagem()">
+    <div *ngIf="mensagemErro" class="alert alert-danger">
+      {{ mensagemErro }}
+    </div>
+  
+    <div class="form-group">
+      <label for="tituloPost">Título Postagem</label>
+      <input type="text" id="tituloPost" formControlName="tituloPost" class="form-control">
+      <div *ngIf="formularioPostagem.get('tituloPost')?.touched && formularioPostagem.get('tituloPost')?.invalid" class="text-danger">
+        <div *ngIf="formularioPostagem.get('tituloPost')?.errors?.['required']">
+          titulo é obrigatório
+        </div>
+        <div *ngIf="formularioPostagem.get('tituloPost')?.errors?.['minlength']">
+          Mínimo de 5 caracteres
+        </div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="conteudoPost">Contéudo do post</label>
+      <input type="text" id="conteudoPost" formControlName="conteudoPost" class="form-control">
+      <div *ngIf="formularioPostagem.get('conteudoPost')?.touched && formularioPostagem.get('conteudoPost')?.invalid" class="text-danger">
+        <div *ngIf="formularioPostagem.get('conteudoPost')?.errors?.['required']">
+          Contéudo é obrigatório
+        </div>
+      </div>
+    </div>
+  <!--
+    <div class="form-group">
+      <label for="categoriaPost">Categoria Post</label>
+      <input type="text" id="categoriaPost" formControlName="categoriaPost" class="form-control">
+      <div *ngIf="formularioPostagem.get('categoriaPost')?.touched && formularioPostagem.get('categoriaPost')?.invalid" class="text-danger">
+        <div *ngIf="formularioPostagem.get('categoriaPost')?.errors?.['required']">
+          Categoria é obrigatória
+        </div>
+        <div *ngIf="formularioPostagem.get('categoriaPost')?.errors?.['minlength']">
+          Mínimo de 1 categoria
+        </div>
+      </div>
+      
+    </div>
+    -->
+    <button type="submit" class="btn">
+      <span *ngIf="!postando">Publicar</span>
+      <span *ngIf="postando">Publicando...</span>
+    </button>
+  </form>

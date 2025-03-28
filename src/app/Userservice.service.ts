@@ -8,15 +8,15 @@ import { environment } from './environment/environment';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = environment.apiUrl
+  private apirUrlUsuario = environment.apirUrlUsuario
   
   constructor(private http: HttpClient) {}
 
   getUsers(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(this.apiUrl); 
+    return this.http.get<Usuario[]>(this.apirUrlUsuario); 
   }
 
   criarUsuario(novoUsuario: Usuario): Observable<any> {
-    return this.http.post(this.apiUrl, novoUsuario);
+    return this.http.post(this.apirUrlUsuario, novoUsuario);
   }
 }

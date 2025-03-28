@@ -1,0 +1,13 @@
+  <p>Debug: {{ listaPostagens() | json }}</p>
+  <p>Total de posts: {{ listaPostagens().length }}</p>
+  
+    <div *ngIf="listaPostagens().length > 0; else semPosts">
+      <div *ngFor="let post of listaPostagens(); let i = index" class="post">
+        <h3>{{ post.tituloPostagem || 'Sem título' }}</h3>
+        <p>{{ post.conteudoPostagem || 'Sem conteúdo' }}</p>
+      </div>
+    </div>
+  
+    <ng-template #semPosts>
+      <p>Nenhum post encontrado.</p>
+    </ng-template>
